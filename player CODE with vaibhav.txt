@@ -1,0 +1,213 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+//function prototypes
+int getValidScore();
+int getValidPlayer();
+void displayScores(const int *scores);
+void changeAScore(int *scores);
+void displayPlayerLowestScore(const int *scores);
+void displayAverageScore(const int *scores);
+void AddPlayer(const int *scores);
+int NUM_PLAYERS = 3;
+
+//main function running the menu
+int main()
+{
+     // sets num players to 3
+
+    int s[] =  {118,98,68};
+    int * scores = s;
+
+    int option; //the users input option
+    // display the golf user menu
+    cout<<"Welcome to the help with the golf tournament program!"<<endl;
+    
+    cout<<"1) Display the scores\n"
+          "2) Change a score\n"
+          "3) Display player with the lowest score\n"
+          "4) Display average score of all players\n"
+          "5) Add a new player\n"
+          "6) Quit"<<endl;
+ 
+    cout<<"Select an option (1..6).."<<endl;//prompt the user to input a menu choice of 1-6
+   
+    cin>>option;
+
+    //loop will run through menu choices and will exit loop when a 6 is entered.
+    //running through menu option
+    
+    while(option != 6)
+    {
+
+        //option one will display the scores
+        if(option == 1)
+        {
+            displayScores(scores);
+            
+        }
+
+        //option two will change a users score
+        if(option == 2)
+        {
+            changeAScore(scores);//call change score function
+            cout<<endl;
+            
+        }
+
+        //option three will show the lowest score
+        if(option == 3)
+        {
+            displayPlayerLowestScore(scores);//call display player lowest score function
+        }
+
+        if (option ==4)
+        {
+            displayAverageScore(scores);// call display average score function
+        }
+
+        if (option == 5)
+        {   
+            AddPlayer(scores);//call change score function
+            cout<<endl;//add a player
+        }
+
+        //if user enters value >6 program prompts them to enter again
+        if(option > 6)
+        {
+            cout<<"Select an option (1..6).."<<endl;//ask for correct user input
+            cin>>option;
+        }
+
+        // shows menu again if the user initially does not choose 1-5
+
+        else
+        {
+            cout<<"\n1) Display the scores\n"
+                  "2) Change a score\n"
+                  "3) Display player with the lowest score\n"
+                  "4) Display average score of all players\n"
+                  "5) Add a new player \n"
+                  "6) Quit"<<endl;
+            cout<<"Select an option (1..6).."<<endl;
+            cin>>option;
+        }
+    }
+    return 0;
+}
+
+
+//FUNCTIONS---with their definitions
+
+//get valid score function
+int getValidScore()
+{
+    int score;
+    cout<<"Please enter in a score..."<<endl;
+    cin>>score;
+
+    while (score < 18 || score >  300)//parameter for correct user inputed score
+    {
+        cout<<"Enter a valid score..."<<endl;
+        cin>>score;
+    }
+    return score;//returns correct score to the function
+}
+
+
+//get valid player function
+int getValidPlayer()
+{
+    int playerNumber;
+    cout<<"Enter in a valid player number..."<<endl;
+    cin>>playerNumber;
+
+    while(playerNumber < 1 || playerNumber > 3)//parameter for correct user inputed player
+    {
+        cout<<"Please enter in a valid player number..."<<endl;
+        cin>>playerNumber;
+    }
+    return playerNumber;//returns a valid player number to the function
+}
+
+
+
+//display the score function
+void displayScores(const int *scores)
+{
+    cout<<"Display scores"<<endl;
+    int i = 1;
+    while(i<=NUM_PLAYERS)
+    {cout<<"\tPlayer-"<<i<<"\t";
+    i++;}
+    cout<<endl;
+
+    for(int x=0; x<NUM_PLAYERS; x++)
+    {
+        cout<<"\t\t"<<scores[x]<<"\t\t";
+    }
+    
+}
+
+
+//display the change a score function
+void changeAScore(int *scores)
+{
+    cout<<"Change a score"<<endl;
+    int playerNum = getValidPlayer();//makes sure player number is valid
+    int score = getValidScore();
+    scores[playerNum-1] = score;
+    cout<<"Score Changed"<<endl;
+}
+
+
+//display the lowest score function
+void displayPlayerLowestScore(const int *scores)
+{
+
+    int low = 300;
+    int position = 0;
+    for(int x=0;x<NUM_PLAYERS; x++)//finds and stores the lowest players score
+    {
+        if(low > scores[x])
+        {
+            low = scores[x];
+            position = x;
+        }
+    }
+    cout<<"The Player with lowest score is "<<(position+1)<<endl;//output the lowest score
+}
+
+//display the average score function
+void displayAverageScore(const int *scores)
+{
+    double total = 0;
+
+    for(int i=0; i < NUM_PLAYERS; i++)//adding all the values
+        total+= scores[i];
+
+    double average = total/NUM_PLAYERS;//solving for average
+    cout << fixed << setprecision(2);
+    cout << "The average score is: "<< average << endl;// output the average
+}
+
+void AddPlayer(const int *scores)
+{
+   NUM_PLAYERS = NUM_PLAYERS + 1;
+   cout<<"Please enter score of New Player..."<<endl;
+   int score;
+    cin>>score;
+    while (score < 18 || score >  300)//parameter for correct user inputed score
+    {
+        cout<<"Enter a valid score..."<<endl;
+        cin>>score;
+    }
+
+   int y[NUM_PLAYERS];
+   for(int i=0; i < NUM_PLAYERS; i++)//adding all the values
+        y[i] = *(scores+i);
+    y[NUM_PLAYERS-1] = score;
+    cout << "Player Added! "<< endl;
+    int *newscore = y;
+    displayScores(newscore);
+}

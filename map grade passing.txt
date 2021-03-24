@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    map<string, double> theStudentBody;
+    string name;
+    double grade;
+    int m;
+    cout<<"Enter number of students"<<endl;
+    cin>>m;
+    for(int i = 0; i<m; i++){
+        cout<<"Enter the name and grade(between 0 to 4) of "<<i+1<<" student:"<<endl;
+        cin>>name;
+        cin>>grade;
+        if(grade<=4 && grade >= 0)
+           theStudentBody.insert({name, grade});
+        else
+        { cout<<"Invalid! Please enter grade between 0 to 4 of "<<i+1<<" student:"<<endl;
+          i = i-1;
+          continue;
+        }
+    }
+    cout << "NAME\tGRADE\n";
+    for (auto itr = theStudentBody.begin(); itr != theStudentBody.end(); ++itr) {
+        cout << itr->first<< '\t' << itr->second << '\n';}
+    double average = 0;
+    for (auto itr = theStudentBody.begin(); itr != theStudentBody.end(); ++itr) {
+        average = average + itr->second;}
+    average = average/m;
+    cout<<"Average of Class is:"<<average<<endl;
+
+    cout<<"Students who are in danger of failing is/are:"<<endl;
+    for (auto itr = theStudentBody.begin(); itr != theStudentBody.end(); ++itr) {
+        if((itr->second) < average)
+            {cout << itr->first<<'\t';}
+    }
+    return 0;
+}

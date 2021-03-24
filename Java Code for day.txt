@@ -1,0 +1,125 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.Scanner;  // importing scanner class to take input from user
+ public class Main {
+  public static void main(String[] args) {
+    System.out.println("Enter the number of your day:\nChoose 1 for Monday // Choose 2 for Tuesday // Choose 3 for Wednesday // Choose 4 for Thursday // Choose 5 for Friday // Choose 6 for Saturday // Choose 7 for Sunday");
+    Scanner input = new Scanner(System.in); 
+    int day = input.nextInt();   //declaring and asking input for integer type variable variable
+
+    //swtich statement starts here!
+    switch (day) {
+      case 1:   //matching 
+        System.out.println("Monday");
+        break;
+
+      case 2:
+        System.out.println("Tuesday");
+        break;
+
+      case 3:
+        System.out.println("Wednesday");
+        
+        break;
+        
+      case 4:
+        System.out.println("Thursday");
+        break;
+      
+      case 5:
+        System.out.println("Friday");
+        break;
+        
+      case 6:
+        System.out.println("Saturday");
+        break;
+        
+      case 7:
+        System.out.println("Sunday");
+        break;
+        
+      default:
+        System.out.println("Invalid Input! Enter a number between 1 to 7");
+        break;
+    }
+    if (day == 6 || day == 7) // if else-if condition to check weekday or weekend day
+    {
+        System.out.println("Weekend");  //case for weekend
+    }
+    else 
+    {if  (day <= 5 && day >= 1)
+        System.out.println("Weekday!"); //case for weekday
+    }
+    System.out.println("Program ends"); //to deliver message when programs end
+  }
+}
+
+
+Advance code with loop
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.io.*;
+import java.util.Scanner;  // importing scanner class to take input from user
+ public class Main {
+  public static void main(String[] args) {
+    boolean valid = false;   //declaring boolean variable
+    do {  //using do while loop to ensure our swtich works until a valid input is given.
+    System.out.println("Enter the number of your day:\nChoose 1 for Monday // Choose 2 for Tuesday // Choose 3 for Wednesday // Choose 4 for Thursday // Choose 5 for Friday // Choose 6 for Saturday // Choose 7 for Sunday");
+    Scanner input = new Scanner(System.in); 
+    int day = input.nextInt();   //declaring and asking input for integer type variable variable
+
+    //swtich statement starts here!
+    switch (day) {
+      case 1:   //matching 
+        System.out.println("Monday");
+        valid = true;   //changing valid to true if correct case executes
+        break;
+
+      case 2:
+        System.out.println("Tuesday");
+        valid = true;
+        break;
+
+      case 3:
+        System.out.println("Wednesday");
+        valid = true;
+        break;
+        
+      case 4:
+        System.out.println("Thursday");
+        valid = true;
+        break;
+      
+      case 5:
+        System.out.println("Friday");
+        valid = true;
+        break;
+        
+      case 6:
+        System.out.println("Saturday");
+        valid = true;
+        break;
+        
+      case 7:
+        System.out.println("Sunday");
+        valid = true;
+        break;
+        
+      default:
+        System.out.println("Invalid Input! Enter a number between 1 to 7");
+        break;
+    }
+    if (day == 6 || day == 7) // if else- condition to check weekday or weekend day
+    {
+        System.out.println("Weekend");  //case for weekend
+    }
+    else 
+    {if  (day <= 5 && day >= 1)
+        System.out.println("Weekday!"); //case for weekday
+    }
+    } while (valid != true);
+    System.out.println("Program ends"); //to deliver message when programs end
+  }
+}
+    
+    

@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+void printalternating(string name, double marks, int n);    //declaring name of our function
+class A     //declaring 1st class
+{
+    public:
+    string name;
+};
+class B     //declaring 2nd class
+{
+    public:
+    double marks;
+};
+int main() {
+    A obj1;    //object of 1st class
+    B obj2;    //object of 2st class
+    
+    int n;
+    cout<<"Enter name of the student:"<<endl;          
+    cin>>obj1.name;                    
+    cout<<"Enter marks of the student:"<<endl;
+    cin>>obj2.marks;
+    cout<<"Enter the number time to print it in alternate manner:"<<endl;
+    cin>>n;
+
+    printalternating(obj1.name, obj2.marks, n);    //calling our function
+    return 0;
+}
+void printalternating(string name, double marks, int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cout<<name<<" -- "<<marks<<endl;
+        cout<<marks<<" -- "<<name<<endl;
+    }
+}

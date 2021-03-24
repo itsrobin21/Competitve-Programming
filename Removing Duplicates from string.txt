@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<string> sortMystring(vector<string>myString , int size)   //method to sort the vector of strings
+{
+    vector<string> tempMyString;
+    tempMyString = myString;     //copying original string vector to temporary string vector
+    sort(tempMyString.begin(),tempMyString.end());   //sorting string set
+    set<string> myStringSet;                 //declaring string set
+    vector<string> updatedStringVector;
+    for(int i = 0; i<size; i++)    //inserting values into string set
+    {
+    myStringSet.insert(tempMyString[i]);
+    }
+    copy(myStringSet.begin(),myStringSet.end(), back_inserter(updatedStringVector)); //copying set values to string vector
+    return updatedStringVector;}
+int main(){
+    vector<string> myString, newString;    //declaring our vector of strings;
+    string m;
+    int size;
+    cout<<"Enter the size of vector:"<<endl;
+    cin>>size;
+    cout<<"Enter the strings to insert in vector:"<<endl;
+    for(int i = 0; i<size; i++)
+    {   cin>>m;
+        myString.push_back(m);             //pushing our strings in vector
+    }
+    cout<<"The string vector is:"<<endl;
+     for(int i = 0; i<size; i++)
+    { cout<<" ["<<myString[i]<<"] "; }
+    cout<<endl;
+    newString = sortMystring(myString , size);       //calling our function
+    cout<<"The sorted string vector is:"<<endl;
+     for(int i = 0; i<newString.size(); i++)
+    {
+        cout<<" [ "<<newString[i]<<" ] ";}
+
+    cout<<"\nUnchanged original string vector:"<<endl;
+     for(int i = 0; i<myString.size(); i++)
+    {
+        cout<<" ["<<myString[i]<<"] ";}
+    return 0;}
